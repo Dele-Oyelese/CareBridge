@@ -1,21 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
-import {Kafka, KafkaConsumer} from 'kafka-node';
 
-const client = new KafkaClient({ kafkaHost: 'localhost:9092' });
-const consumer = new KafkaConsumer(
-    client,
-    [{ topic: 'PatientUpdate', partition: 0 }],
-    { autoCommit: true }
-);
-
-const availableTime = 5
+const availableTime = 30
 
 const notifications = [
-    {id: 0, title: 'Patient general update (2023-03-04 10:00)', message: 'Patient X received a bath.'},
-    {id: 1, title: 'Patient general update (2023-03-04 11:00)', message: 'Patient X were examined by Doctor H.'},
+    {id: 453645645645, title: 'New Patient Update (03/04/2023, 10:20:15)', message: 'Patient X received a bath.'},
+    {id: 453645645646, title: 'New Patient Update (03/04/2023, 11:54:03)', message: 'Patient X were examined by Doctor H.'},
     {
-        id: 2, title: 'Patient transfer (2023-03-04 15:00)',
+        id: 453645645647, title: 'New Patient Update (03/04/2023, 14:10:00)',
         message: 'Patient X were transferred to the ER following breathing problems.'
     }
 ];
@@ -38,14 +30,17 @@ export const Notification = () => {
     }, [timeLeft]);
 
     useEffect(() => {
-        consumer.on('message', (message) => {
-            const notification = JSON.parse(message.value);
-            setRemainingNotifications((prevNotifications) => [...prevNotifications, notification]);
-        });
-        consumer.on('error', (error) => {
-            console.error('Error from Kafka consumer:', error);
-        });
-        return () => consumer.close();
+        const fetchNotifications = async () => {
+            const response = await fetch('http://localhost:5000/get_patient_update');
+            const newNotifications = await response.json();
+            for (let i = 0; i < newNotifications.length; i++) {
+                setRemainingNotifications((prevNotifications) => [...prevNotifications, newNotifications[i]]);
+            }
+            fetchNotifications();
+        };
+
+        fetchNotifications();
+
     }, []);
 
     const openModal = (notification) => {

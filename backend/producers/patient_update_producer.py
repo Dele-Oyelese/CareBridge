@@ -1,4 +1,4 @@
-from time import time
+import time
 
 from kafka import KafkaProducer
 import json
@@ -9,7 +9,9 @@ class PatientUpdateProducer:
     __current_id = 0
 
     def send_notification(self, notification):
-        notification["title"] += " " + str(time())
+        named_tuple = time.localtime()  # get struct_time
+        time_string = time.strftime("%m/%d/%Y, %H:%M:%S", named_tuple)
+        notification["title"] += " (" + time_string+")"
         notification["id"] = self.__current_id
         self.__current_id += 1
 
