@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import { Button } from './Button';
-import { Link } from 'react-router-dom';
-import '../css/Navbar.css';
-import { Button } from '@mui/material';
+import { Link } from "react-router-dom";
+import "../css/Navbar.css";
+import { Button } from "@mui/material";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -23,24 +23,22 @@ function Navbar() {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
 
   return (
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-
-            <i className="fa-solid fa-angle-left"></i>
-            <i className="fa-solid fa-angle-right"></i>
+            <i className='fa-solid fa-angle-left'></i>
+            <i className='fa-solid fa-angle-right'></i>
             &nbsp;Care Bridge &nbsp;
             <i className='fa-solid fa-code' />
           </Link>
           <div className='menu-icon' onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
@@ -57,7 +55,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/'
+                to='/updates'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
@@ -75,11 +73,20 @@ function Navbar() {
               </Link>
             </li> */}
           </ul>
-          {button && <Button style={{
-        backgroundColor: "rgba(0,0,0,0.5)",
-        color: "white",
-        
-    }} variant="outlined" component={Link} to="/aboutMe" buttonStyle='btn--outline'>LogOut</Button>}
+          {button && (
+            <Button
+              style={{
+                backgroundColor: "rgba(0,0,0,0.5)",
+                color: "white",
+              }}
+              variant='outlined'
+              component={Link}
+              to='/aboutMe'
+              buttonStyle='btn--outline'
+            >
+              LogOut
+            </Button>
+          )}
         </div>
       </nav>
     </>
