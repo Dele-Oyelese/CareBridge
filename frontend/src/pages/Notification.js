@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
 
+const availableTime = 5
+
 const notifications = [
-    {title: 'Patient general update (2023-03-04 10:00)', message: 'Patient X received a bath.'},
-    {title: 'Patient general update (2023-03-04 11:00)', message: 'Patient X were examined by Doctor H.'},
+    {id: 0, title: 'Patient general update (2023-03-04 10:00)', message: 'Patient X received a bath.'},
+    {id: 1, title: 'Patient general update (2023-03-04 11:00)', message: 'Patient X were examined by Doctor H.'},
     {
-        title: 'Patient transfer (2023-03-04 15:00)',
+        id: 2, title: 'Patient transfer (2023-03-04 15:00)',
         message: 'Patient X were transferred to the ER following breathing problems.'
     }
 ];
@@ -14,13 +16,13 @@ export const Notification = () => {
 
     const [selectedNotification, setSelectedNotification] = useState(null);
     const [remainingNotifications, setRemainingNotifications] = useState(notifications);
-    const [timeLeft, setTimeLeft] = useState(30);
+    const [timeLeft, setTimeLeft] = useState(null);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (timeLeft > 0) {
+            if (timeLeft) {
                 setTimeLeft(timeLeft - 1);
-            } else {
+            } else if (timeLeft === 0) {
                 closeModal(selectedNotification);
             }
         }, 1000);
@@ -29,7 +31,7 @@ export const Notification = () => {
 
     const openModal = (notification) => {
         setSelectedNotification(notification);
-        setTimeLeft(30);
+        setTimeLeft(availableTime);
     };
 
     const closeModal = (notification) => {
@@ -37,7 +39,7 @@ export const Notification = () => {
             prevNotifications.filter((n) => n.id !== notification.id)
         );
         setSelectedNotification(null);
-        setTimeLeft(30);
+        setTimeLeft(null);
     };
 
     return (
