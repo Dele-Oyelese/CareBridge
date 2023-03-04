@@ -2,7 +2,7 @@ import React from 'react';
 import "../css/ExecutiveSummary.css";
 import "../../App.css"
 
-function AboutMe() {
+function Summary() {
 
     return (
         
@@ -24,4 +24,4 @@ function AboutMe() {
 
 }
 
-export default AboutMe;
+export default Summary;
