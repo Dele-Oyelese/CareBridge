@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./Notification.scss";
 
-const availableTime = 10000;
+const availableTime = 5;
 
 const notifications = [
   {
