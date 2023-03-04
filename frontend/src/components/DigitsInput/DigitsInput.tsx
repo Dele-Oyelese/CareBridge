@@ -55,7 +55,7 @@ const stateMachine = Machine<LockContext>(
         on: {
           LOCK: "locked"
         }
-      }
+      },
     }
   },
   {
@@ -69,6 +69,8 @@ const stateMachine = Machine<LockContext>(
 
 export default function Lock() {
   const [state, setState] = React.useState(stateMachine.initialState);
+  const [hasClicked, setHasClicked] = React.useState(false);
+
   const navigate = useNavigate();
 
   const service = React.useMemo(() => {
@@ -92,10 +94,10 @@ export default function Lock() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     service.send({ type: "PRESS_BUTTON" });
-    console.log(service.state.value);
     if (service.state.value === "open") {
       redirect();
     }
+    setHasClicked(true);
   };
 
   const digits = useDigitInput({
@@ -118,9 +120,10 @@ export default function Lock() {
 
   const renderLocked = () => (
     <form onSubmit={handleSubmit}>
-      <p className="h4 text-dark">Welcome to CareBridge</p>
+      <p className="h1 text-dark">Welcome to <b>CareBridge</b></p>
+      <img src={require("../../images/simple-bridge-logo.jpg")} alt="Placeholder Bridge Logo"/>
       <p className="h4 text-dark">Your family member has invited you</p>
-      <p className="h4 text-dark">JANE SMITH</p>
+      <p className="h4 text-dark"><strong>JANE SMITH</strong></p>
       <p className="h4 text-dark">to receive automated updates on their care in hospital or urgent care.</p>
       <p className="h4 text-dark">To confirm you want updates on this family member that has identified you as a primary contact and family designate for phone calls, please enter the code and patient initials given to you.</p>
       <p>Enter the 5-digit code</p>
@@ -154,15 +157,28 @@ export default function Lock() {
 
       <div>
         <button type="submit" className="btn btn-primary btn-block">
-          Unlock
+          Authenticate
         </button>
       </div>
+
+
     </form>
+
+    
+
+
   );
 
   return (
     <div className="border rounded-lg bg-white p-3 text-center">
-      {renderLocked()}
+      <>
+        {renderLocked()}
+        {hasClicked &&
+          <div className="alert alert-danger" role="alert" style={{marginTop: "10px"}}>
+            Invalid credentials. Please try again.
+          </div>
+        }
+      </>
     </div>
   );
 }
