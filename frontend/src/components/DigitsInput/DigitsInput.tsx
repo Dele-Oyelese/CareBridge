@@ -5,7 +5,7 @@ import useDigitInput from "react-digit-input";
 import { useNavigate } from "react-router-dom";
 
 const CODE = "00000";
-const INITIALS = "AA";
+const INITIALS = "AB";
 
 type LockContext = {
   code: string;
@@ -55,7 +55,7 @@ const stateMachine = Machine<LockContext>(
         on: {
           LOCK: "locked"
         }
-      }
+      },
     }
   },
   {
@@ -69,8 +69,9 @@ const stateMachine = Machine<LockContext>(
 
 export default function Lock() {
   const [state, setState] = React.useState(stateMachine.initialState);
+  const [hasClicked, setHasClicked] = React.useState(false);
+
   const navigate = useNavigate();
-  let errorMessage = "";
 
   const service = React.useMemo(() => {
     const service = interpret(stateMachine);
@@ -96,7 +97,7 @@ export default function Lock() {
     if (service.state.value === "open") {
       redirect();
     }
-    errorMessage = "Incorrect code or initial. Please try again.";
+    setHasClicked(true);
   };
 
   const digits = useDigitInput({
@@ -120,7 +121,7 @@ export default function Lock() {
   const renderLocked = () => (
     <form onSubmit={handleSubmit}>
       <p className="h1 text-dark">Welcome to <b>CareBridge</b></p>
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/002/265/272/small_2x/bridge-building-logo-design-template-icon-free-vector.jpg" alt="Placeholder Bridge Logo"/>
+      <img src={require("../../images/simple-bridge-logo.jpg")} alt="Placeholder Bridge Logo"/>
       <p className="h4 text-dark">Your family member has invited you</p>
       <p className="h4 text-dark"><strong>JANE SMITH</strong></p>
       <p className="h4 text-dark">to receive automated updates on their care in hospital or urgent care.</p>
@@ -159,14 +160,25 @@ export default function Lock() {
           Authenticate
         </button>
       </div>
+
+
     </form>
+
+    
 
 
   );
 
   return (
     <div className="border rounded-lg bg-white p-3 text-center">
-      {renderLocked()}
+      <>
+        {renderLocked()}
+        {hasClicked &&
+          <div className="alert alert-danger" role="alert" style={{marginTop: "10px"}}>
+            Invalid credentials. Please try again.
+          </div>
+        }
+      </>
     </div>
   );
 }
