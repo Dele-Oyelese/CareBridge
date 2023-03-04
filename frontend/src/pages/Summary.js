@@ -1,15 +1,14 @@
 import React from 'react'
 import Footer from '../components/js/Footer';
-
-import HeroSection from '../components/js/HeroSection';
+import ExecutiveSummary from '../components/js/ExecutiveSummary'
 import Navbar from '../components/js/Navbar';
 
-function Home (){
+function Summary (){
   return( 
   
   <>
   <Navbar/>
-<HeroSection/>
+<ExecutiveSummary/>
 <Footer/>
    
    
@@ -17,4 +16,4 @@ function Home (){
   );
 }
 
-export default Home;
+export default Summary;
