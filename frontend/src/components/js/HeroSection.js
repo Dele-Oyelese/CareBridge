@@ -21,7 +21,7 @@ function HeroSection() {
             className="btns"
             buttonStyle="btn--outline"
             buttonSize="btn--large"
-            path= '/'>
+            path= '/updates'>
           Patient Updates
           </Button>
         </div>

@@ -115,7 +115,7 @@ export default function Lock() {
   });
 
   const redirect = () => {
-      navigate("/");
+      navigate("/home");
   };
 
   const renderLocked = () => (
