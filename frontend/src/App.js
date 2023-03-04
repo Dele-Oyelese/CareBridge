@@ -1,9 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
 import { Notification } from "./pages/Notification/Notification";
 
+import Home from "./pages/Home";
 import Summary from "./pages/Summary";
+
 function App() {
   return (
     <>
