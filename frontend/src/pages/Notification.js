@@ -1,5 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
+import {Kafka, KafkaConsumer} from 'kafka-node';
+
+const client = new KafkaClient({ kafkaHost: 'localhost:9092' });
+const consumer = new KafkaConsumer(
+    client,
+    [{ topic: 'PatientUpdate', partition: 0 }],
+    { autoCommit: true }
+);
 
 const availableTime = 5
 
@@ -28,6 +36,17 @@ export const Notification = () => {
         }, 1000);
         return () => clearTimeout(timer);
     }, [timeLeft]);
+
+    useEffect(() => {
+        consumer.on('message', (message) => {
+            const notification = JSON.parse(message.value);
+            setRemainingNotifications((prevNotifications) => [...prevNotifications, notification]);
+        });
+        consumer.on('error', (error) => {
+            console.error('Error from Kafka consumer:', error);
+        });
+        return () => consumer.close();
+    }, []);
 
     const openModal = (notification) => {
         setSelectedNotification(notification);
