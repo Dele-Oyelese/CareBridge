@@ -5,7 +5,7 @@ import useDigitInput from "react-digit-input";
 import { useNavigate } from "react-router-dom";
 
 const CODE = "00000";
-const INITIALS = "AB";
+const INITIALS = "AA";
 
 type LockContext = {
   code: string;
@@ -70,6 +70,7 @@ const stateMachine = Machine<LockContext>(
 export default function Lock() {
   const [state, setState] = React.useState(stateMachine.initialState);
   const navigate = useNavigate();
+  let errorMessage = "";
 
   const service = React.useMemo(() => {
     const service = interpret(stateMachine);
@@ -92,10 +93,10 @@ export default function Lock() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     service.send({ type: "PRESS_BUTTON" });
-    console.log(service.state.value);
     if (service.state.value === "open") {
       redirect();
     }
+    errorMessage = "Incorrect code or initial. Please try again.";
   };
 
   const digits = useDigitInput({
@@ -118,9 +119,10 @@ export default function Lock() {
 
   const renderLocked = () => (
     <form onSubmit={handleSubmit}>
-      <p className="h4 text-dark">Welcome to CareBridge</p>
+      <p className="h1 text-dark">Welcome to <b>CareBridge</b></p>
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/002/265/272/small_2x/bridge-building-logo-design-template-icon-free-vector.jpg" alt="Placeholder Bridge Logo"/>
       <p className="h4 text-dark">Your family member has invited you</p>
-      <p className="h4 text-dark">JANE SMITH</p>
+      <p className="h4 text-dark"><strong>JANE SMITH</strong></p>
       <p className="h4 text-dark">to receive automated updates on their care in hospital or urgent care.</p>
       <p className="h4 text-dark">To confirm you want updates on this family member that has identified you as a primary contact and family designate for phone calls, please enter the code and patient initials given to you.</p>
       <p>Enter the 5-digit code</p>
@@ -154,10 +156,12 @@ export default function Lock() {
 
       <div>
         <button type="submit" className="btn btn-primary btn-block">
-          Unlock
+          Authenticate
         </button>
       </div>
     </form>
+
+
   );
 
   return (
