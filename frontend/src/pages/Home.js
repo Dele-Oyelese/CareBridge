@@ -1,7 +1,18 @@
 import React from 'react'
 
-export const Home = () => {
-  return (
-    <div>Home</div>
-  )
+import HeroSection from '../components/js/HeroSection';
+import Navbar from '../components/js/Navbar';
+
+function Home (){
+  return( 
+  
+  <>
+  <Navbar/>
+<HeroSection/>
+   
+   
+   </>
+  );
 }
+
+export default Home;
