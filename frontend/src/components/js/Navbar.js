@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
+// import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import '../css/Navbar.css';
+import { Button } from '@mui/material';
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -47,22 +48,22 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
+                to='/summary'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Execuitve Summary
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
                 to='/'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Fill
+                Patient Updates
               </Link>
             </li>
-            {/* <li className='nav-item'>
-              <Link
-                to='/projects'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Projects
-              </Link>
-            </li> */}
 
             {/* <li>
               <Link
@@ -74,7 +75,11 @@ function Navbar() {
               </Link>
             </li> */}
           </ul>
-          {/* {button && <Button buttonStyle='btn--outline'>Contact Me</Button>} */}
+          {button && <Button style={{
+        backgroundColor: "rgba(0,0,0,0.5)",
+        color: "white",
+        
+    }} variant="outlined" component={Link} to="/aboutMe" buttonStyle='btn--outline'>LogOut</Button>}
         </div>
       </nav>
     </>

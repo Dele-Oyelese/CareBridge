@@ -11,13 +11,18 @@ function HeroSection() {
         <h1>ADVENTURE AWAITS</h1>
         <p>What are you waiting for</p> */}
 
+        <p>
+        Welcome to CareBridge your connection to a hospitalized loved one in Alberta.  This is your one stop for updates on your loved one's hospital stay.
+        </p> 
+        <br/>
+        <p>Click the link below to get updates on your loved one</p>
         <div className="hero-btns">
           <Button
             className="btns"
             buttonStyle="btn--outline"
             buttonSize="btn--large"
             path= '/'>
-          Login
+          Patient Updates
           </Button>
         </div>
       </div>

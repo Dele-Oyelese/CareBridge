@@ -33,31 +33,22 @@ function Footer() {
             <Link to = '/'className='social-logo'>
             <i className="fa-solid fa-angle-left"></i>
             <i className="fa-solid fa-angle-right"></i>
-            &nbsp;Dele Oyelese &nbsp;
+            &nbsp;Care Bridge &nbsp;
             <i className='fa-solid fa-code' />
             </Link>
         </div>
-        <small className='website-rights'> Dele Oyelese © 2023 </small>
+        <small className='website-rights'> CareBridge © 2023 </small>
         <div className='social-icons'>
             <a className='social-icon-link linkedin'
             target ='_blank'
-            href= 'https://www.linkedin.com/in/dele-'
+            href= 'https://www.epic.com/'
 
             aria-label = 'LinkedIn'
             >
-             LinkedIn <i className="fa-brands fa-linkedin-in" />
+             More on the EPIC EMR system <i className="fa-brands fa-linkedin-in" />
             </a>
         </div>
-        <div className='social-icons'>
-            <a className='social-icon-link github'
-            target ='_blank'
-            href= 'https://github.com/Dele-Oyelese'
-
-            aria-label = 'GitHub'
-            >
-             GitHub <i className="fa-brands fa-github" />
-            </a>
-        </div>
+   
         </div>
 
         </section>
