@@ -29,7 +29,7 @@ function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+          <Link to='/CareBridge' className='navbar-logo' onClick={closeMobileMenu}>
             <i className='fa-solid fa-angle-left'></i>
             <i className='fa-solid fa-angle-right'></i>
             &nbsp;Care Bridge &nbsp;
@@ -40,13 +40,13 @@ function Navbar() {
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/CareBridge' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
             <li className='nav-item'>
               <Link
-                to='/summary'
+                to='/CareBridge/summary'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
@@ -55,7 +55,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/updates'
+                to='/CareBridge/updates'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
@@ -81,7 +81,7 @@ function Navbar() {
               }}
               variant='outlined'
               component={Link}
-              to='/aboutMe'
+              to='/CareBridge/login'
               buttonStyle='btn--outline'
             >
               LogOut
