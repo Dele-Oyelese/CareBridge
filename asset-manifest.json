@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/CareBridge/static/css/main.1a41a112.css",
-    "main.js": "/CareBridge/static/js/main.02cfbec8.js",
+    "main.js": "/CareBridge/static/js/main.fed48cf8.js",
     "static/media/bridge.jpg": "/CareBridge/static/media/bridge.eb42115a8e04fe57ef38.jpg",
     "static/media/background.png": "/CareBridge/static/media/background.4aba672344c47bfe21a5.png",
     "static/media/dog.jpeg": "/CareBridge/static/media/dog.18e415ad472bcfbfa976.jpeg",
     "index.html": "/CareBridge/index.html",
     "main.1a41a112.css.map": "/CareBridge/static/css/main.1a41a112.css.map",
-    "main.02cfbec8.js.map": "/CareBridge/static/js/main.02cfbec8.js.map"
+    "main.fed48cf8.js.map": "/CareBridge/static/js/main.fed48cf8.js.map"
   },
   "entrypoints": [
     "static/css/main.1a41a112.css",
-    "static/js/main.02cfbec8.js"
+    "static/js/main.fed48cf8.js"
   ]
 }
